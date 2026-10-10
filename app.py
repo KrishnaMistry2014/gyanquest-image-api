@@ -34,17 +34,15 @@ def generate():
 
     headers = {"Authorization": f"Bearer {token}"}
     payload = {
-        "data": [
-            prompt.strip(),
-            "blurry, low quality, watermark, unwanted text",
-            "Turbo",
-            4,
-            1,
-            1024,
-            1024,
-            0,
-            True
-        ]
+        "prompt": prompt.strip(),
+        "negative_prompt": "blurry, low quality, watermark, unwanted text",
+        "model": "Turbo",
+        "steps": 8,
+        "guidance": 0.0,
+        "width": 1024,
+        "height": 1024,
+        "seed": 0,
+        "randomize": True
     }
 
     try:
