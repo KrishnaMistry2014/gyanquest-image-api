@@ -75,8 +75,10 @@ def generate():
         response.raise_for_status()
         event_id = response.json()["event_id"]
 
+        # Poll the exact same Gradio API route used to create the event.
+        # The previous path omitted "v2", so it could poll the wrong endpoint.
         result = requests.get(
-            f"{HF_SPACE}/gradio_api/call/generate/{event_id}",
+            f"{HF_SPACE}/gradio_api/call/v2/generate/{event_id}",
             headers=headers,
             stream=True,
             timeout=TIMEOUT
